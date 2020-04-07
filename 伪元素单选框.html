@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 注释：
+            input[type="checkbox"]:checked{
+                background-color:red;
+            }
+            设置单选框被选中时的背景颜色
+            也可以设置单选框呗选中另一个元素的样式（改元素和input同级）
+            语法：   
+                -1.input[type="checkbox"]:checked~.box{}当input[type="checkbox"]被选中可以设置.box元素的样式
+                -2.input[type="checkbox"]:not(checked)~.box{}当input[type="checkbox"]不被选中可以设置.box元素的样式
+         */
+        #inp[type="checkbox"] {
+            position: relative;
+        }
+        #inp[type="checkbox"]::before {
+            position: absolute;
+            content: "";
+            top: 50%;
+            left: 50%;
+            width: 100%;
+            height: 100%;
+            background: white;
+            transform: translate(-50%, -50%);
+            border: 1px solid #0099ff;
+        }
+
+        #inp[type="checkbox"]:checked::before {
+            position: absolute;
+            content: "\2713";
+            font-size: 10px;
+            font-weight: bold;
+            text-align: center;
+            line-height: 100%;
+            color: white;
+            background-color: #0099ff;
+        }
+
+        #inp[type="checkbox"]:checked~.box {
+            background-color: red;
+        }
+
+        .box {
+            width: 100px;
+            height: 100px;
+        }
+
+        .toggle-item {
+            width: 100px;
+            height: 100px;
+            background-color: pink;
+        }
+
+        #toggle-trigger:not(checked)~.toggle-item {
+            display: block;
+        }
+
+        #toggle-trigger:checked~.toggle-item {
+            display: none;
+        }
+        </style>
+</head>
+
+<body>
+    <div class="toggle">
+        <input id="toggle-trigger" type="checkbox" />
+        <div class="toggle-item"></div>
+    </div>
+    <div>
+        <label for="aaa" id="lab">111
+            <input type="checkbox" name="aaa" id="inp">
+            <div class="box">
+            </div>
+        </label>
+    </div>
+    <div>
+
+        <label for="inp1" id="lab">
+            <span class="sp1">我已阅读</span>
+            <input type="checkbox" name="inp1" id="inp1">
+        </label>
+    </div>
+</body>
+
+</html>
