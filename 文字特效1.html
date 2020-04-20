@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: #1A1E23;
+        }
+        .float-text-menu {
+  display: flex;
+  flex-direction: column;
+  list-style-type: none;
+}
+.float-text-menu li a {
+  display: flex;
+  padding: 6px;
+  color: white;
+  font-family: Lato, sans-serif;
+  text-decoration: none;
+  overflow: hidden;
+}
+.float-text-menu li a span {
+  position: relative;
+  transition: 0.3s;
+}
+.float-text-menu li a span::before {
+  position: absolute;
+  /* 伪元素的内容为该元素设置的data-text属性的内容 */
+  content: attr(data-text);
+  transform: translateY(130%);
+  color: rgb(168, 168, 235);
+}
+.float-text-menu li a:hover span {
+  transform: translateY(-130%);
+}
+    </style>
+</head>
+
+<body>
+    <ul class="float-text-menu">
+        <li><a href="#" data-text="Home">Home</a></li>
+        <li><a href="#" data-text="Archives">Archives</a></li>
+        <li><a href="#" data-text="Tags">Tags</a></li>
+        <li><a href="#" data-text="Categories">Categories</a></li>
+        <li><a href="#" data-text="About">About</a></li>
+        </ul>
+</body>
+
+<script>
+
+var floatTextMenuLinks = document.querySelectorAll(".float-text-menu li a");
+floatTextMenuLinks.forEach(function (link) {
+  var letters = link.textContent.split("");
+  link.textContent = "";
+  letters.forEach(function (letter, i) {
+    var span = document.createElement("span");
+    span.textContent = letter;
+    span.style.transitionDelay = i / 20 + "s";
+    span.setAttribute('data-text',letter); 
+    link.append(span);
+  });
+});
+</script>
+</html>
